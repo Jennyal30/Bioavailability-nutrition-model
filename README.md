@@ -32,7 +32,9 @@ The framework is structured into four components:
 ### 2.4 Execution Layer
 - Runs full pipeline and outputs optimal meal selection
 
----
+## 2.5 Computational Method
+
+The optimisation routine uses exhaustive search over all 2-food combinations, applying a constraint filter (phytate threshold) and a weighted scoring function for multi-nutrient adequacy.
 
 ## 3. Key Assumptions
 - Linear inhibition of micronutrient absorption
