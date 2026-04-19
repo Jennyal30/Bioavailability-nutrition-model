@@ -62,8 +62,39 @@ This prototype reflects early-stage modelling approaches relevant to:
 The model selects a meal combination that maximises absorbable iron, zinc, and calcium under anti-nutrient constraints.
 
 ---
+## 7. Results
+| Meal Combination        | Iron | Zinc | Calcium | Score |
+|------------------------|------|------|---------|-------|
+| lentils + chickpeas    | 9.8  | 5.2  | 85.0    | 11.9  |
+| beans + spinach        | 7.3  | 4.0  | 130.0   | 10.6  |
+| lentils + spinach      | 9.0  | 3.5  | 125.0   | 10.4  |
+---
+## 8. Sensitivity Analysis(Phytate Effect)
+We tested the impact of varying the phytate inhibition factor on absorbable iron:
 
-## 7. Future Work
+| Phytate Factor | Iron Output Change |
+|----------------|-------------------|
+| 0.15           | +18%              |
+| 0.25 (base)    | baseline          |
+| 0.35           | −22%              |
+| 0.45           | −41%              |
+---
+## 9. Future Work
 - Integration of additional anti-nutrients (oxalates, tannins)
 - Non-linear absorption functions
 - Population-level dietary optimisation
+
+## 10.Conceptual Flow Diagram
+ Food Composition Data
+        ↓
+Anti-nutrient Adjustment (Phytate)
+        ↓
+Absorption Function
+        ↓
+Meal Combination Generator
+        ↓
+Constraint Filter (Phytate limit)
+        ↓
+Optimisation (Best Meal Selection)
+        ↓
+Output: Nutrient-Optimised Diet
