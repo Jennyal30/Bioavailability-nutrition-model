@@ -1,4 +1,4 @@
-# Bioavailability-Aware Nutrient Model
+# Developed as a prototype for bioavailability-aware dietary modelling in plant-based systems.
 
 This project demonstrates a simple model for estimating absorbable iron in plant-based foods.
 
