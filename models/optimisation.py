@@ -1,16 +1,43 @@
-# Simple optimisation model for selecting best food
+from models.absorption import absorbable_nutrients
 
-from models.absorption import absorbable_iron
+def evaluate_meal(meal, foods):
+    total = {"iron": 0, "zinc": 0, "calcium": 0}
 
-def best_food(foods):
-    best_name = None
-    best_value = 0
+    for item in meal:
+        nutrients = absorbable_nutrients(foods[item])
 
-    for name, food in foods.items():
-        value = absorbable_iron(food)
+        total["iron"] += nutrients["iron"]
+        total["zinc"] += nutrients["zinc"]
+        total["calcium"] += nutrients["calcium"]
 
-        if value > best_value:
-            best_value = value
-            best_name = name
+    return total
 
-    return best_name, best_value
+
+def best_meal(foods):
+    food_names = list(foods.keys())
+
+    best_meal = None
+    best_score = 0
+
+    PHYTATE_LIMIT = 4.0
+
+    for i in range(len(food_names)):
+        for j in range(i + 1, len(food_names)):
+
+            meal = [food_names[i], food_names[j]]
+
+            # phytate constraint
+            total_phytate = sum(foods[f]["phytate"] for f in meal)
+
+            if total_phytate <= PHYTATE_LIMIT:
+
+                nutrients = evaluate_meal(meal, foods)
+
+                # simple scoring function (multi-nutrient)
+                score = nutrients["iron"] + nutrients["zinc"] + nutrients["calcium"] / 100
+
+                if score > best_score:
+                    best_score = score
+                    best_meal = meal
+
+    return best_meal, best_score
