@@ -1,8 +1,7 @@
 from data.foods import foods
-from models.optimisation import best_food
+from models.optimisation import best_meal
 
-# Run optimisation
-best, value = best_food(foods)
+meal, score = best_meal(foods)
 
-print("Best food based on absorbable iron:", best)
-print("Absorbable iron value:", round(value, 2))
+print("Best meal combination:", meal)
+print("Composite nutrition score:", round(score, 2))
