@@ -1,23 +1,67 @@
-# developed as a prototype for bioavailability-aware dietary modelling in plant-based systems.
+# Bioavailability-Aware Dietary Optimisation Model
 
-This project demonstrates a simple model for estimating absorbable iron in plant-based foods.
+## Abstract
+This project presents a simplified computational framework for modelling nutrient bioavailability in plant-based diets. It integrates food composition data with anti-nutrient constraints (phytate) to estimate absorbable micronutrients and optimise meal selection.
 
-It accounts for anti-nutrient effects (phytate), showing how nutrient intake differs from actual absorption.
+The system demonstrates how dietary adequacy assessments can shift from intake-based metrics to bioavailability-aware modelling.
 
-This aligns with research in:
-- micronutrient bioavailability
-- food systems modelling
-- plant-based diet optimisation
-## Additional Model: Optimisation
+---
 
-A second script (`optimisation_model.py`) demonstrates simple optimisation logic by selecting foods that maximise absorbable iron under anti-nutrient constraints.
+## 1. Motivation
+Standard dietary assessment methods often rely on nutrient intake values, which can overestimate physiological nutrient availability. This model introduces a simplified correction layer based on anti-nutrient inhibition effects.
 
-This reflects early-stage decision modelling used in dietary optimisation frameworks.
-## Diet and Constraint Models
+---
 
-Additional scripts extend the model to meal-level analysis:
+## 2. Model Structure
 
-- `diet_model.py`: calculates absorbable iron from combined foods  
-- `constraint_model.py`: selects optimal food combinations under anti-nutrient constraints  
+The framework is structured into four components:
 
-These demonstrate simplified dietary optimisation logic relevant to plant-based diet modelling.
+### 2.1 Data Layer
+- Food composition values (iron, zinc, calcium)
+- Anti-nutrient content (phytate)
+
+### 2.2 Absorption Model
+- Linear inhibition function:
+  absorption = nutrient × (1 − 0.25 × phytate)
+
+### 2.3 Optimisation Model
+- Evaluates combinations of foods
+- Applies phytate constraints
+- Maximises composite nutrient score
+
+### 2.4 Execution Layer
+- Runs full pipeline and outputs optimal meal selection
+
+---
+
+## 3. Key Assumptions
+- Linear inhibition of micronutrient absorption
+- Additive nutrient contribution across foods
+- Simplified scoring function for multi-nutrient optimisation
+
+---
+
+## 4. Limitations
+- Does not include synergistic nutrient interactions
+- Does not model digestion kinetics (static approximation)
+- Simplified constraint system (phytate threshold only)
+
+---
+
+## 5. Scientific Relevance
+This prototype reflects early-stage modelling approaches relevant to:
+- bioavailability-aware dietary assessment
+- food systems optimisation
+- plant-based nutrition modelling
+
+---
+
+## 6. Example Output
+The model selects a meal combination that maximises absorbable iron, zinc, and calcium under anti-nutrient constraints.
+
+---
+
+## 7. Future Work
+- Integration of additional anti-nutrients (oxalates, tannins)
+- Non-linear absorption functions
+- Population-level dietary optimisation
